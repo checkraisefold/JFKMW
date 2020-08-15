@@ -307,6 +307,10 @@ public:
 					ASM.Write_To_Ram(0x1DF9, 0x3, 1);
 				}
 				GRABBED_SPRITE = 0xFF;
+
+
+				//Hitspark
+				createParticle(0x44, 0x11, 0x8, 5, x_position, y_position - 16.0, 0, 0, 0);
 			}
 		}
 	}
@@ -556,9 +560,6 @@ public:
 									RAM[0x2E00 + sprite] = 0x10;
 
 									ASM.Write_To_Ram(0x1DF9, 3, 1);
-
-									//Hitspark
-									createParticle(0x44, 0x11, 0x8, 5, x + X_SPEED, y - 16.0, 0, 0, 0);
 								}
 							}
 						}
@@ -1314,7 +1315,7 @@ public:
 					was_jumpin = pad[button_a] || pad[button_b];
 					if (was_jumpin) {
 						RAM[0x1DF9] = 0x0E;
-						Y_SPEED = 10.0;
+						Y_SPEED += Calculate_Speed(384);
 					}
 					jump_is_spin = false;
 				}
